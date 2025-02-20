@@ -23,19 +23,6 @@ const SignUp = () => {
           </div>
           <div className="mb-3 lg:mb-6">
             <label
-              htmlFor="email"
-              className="block font-semibold lg:text-xl text-lg mb-2 lg:mb-3"
-            >
-              Email
-            </label>
-            <input
-              type="email"
-              placeholder="Enter Your email address"
-              className="w-full h-12 text-xl rounded-2xl pl-4 font-medium bg-white dark:bg-[#2b3945] dark:text-[#E5E8EB] max-w-[500px]"
-            />
-          </div>
-          <div className="mb-3 lg:mb-6">
-            <label
               htmlFor="password"
               className="block font-semibold lg:text-xl text-lg mb-2 lg:mb-3"
             >
