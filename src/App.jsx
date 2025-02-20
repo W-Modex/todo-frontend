@@ -12,7 +12,10 @@ function App() {
     const storedTheme = localStorage.getItem("theme");
     return storedTheme ? storedTheme : "light";
   });
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(() => {
+    const storedData = localStorage.getItem("data");
+    return storedData ?  JSON.parse(storedData) : [];
+  });
 
   function lightTheme() {
     setThemeMode("light");
@@ -47,12 +50,12 @@ function App() {
 
   const updateTask = (taskId, newTitle) => {
     if (!newTitle) return;
-    
-    setData(prevData => prevData.map(task => 
-      task.id === taskId 
-        ? { ...task, title: newTitle }
-        : task
-    ));
+
+    setData((prevData) =>
+      prevData.map((task) =>
+        task.id === taskId ? { ...task, title: newTitle } : task
+      )
+    );
   };
 
   useEffect(() => {
@@ -61,10 +64,16 @@ function App() {
     document.querySelector("html").classList.add(themeMode);
   }, [themeMode]);
 
+  useEffect(() => {
+    localStorage.setItem("data", JSON.stringify(data));
+  }, [data]);
+
   return (
     <div>
       <ThemeProvider value={{ themeMode, lightTheme, darkTheme }}>
-        <TaskProvider value={{ data, changeStatus, deleteTask, addNewTask, updateTask }}>
+        <TaskProvider
+          value={{ data, changeStatus, deleteTask, addNewTask, updateTask }}
+        >
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
