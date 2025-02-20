@@ -45,7 +45,6 @@ function App() {
       status: "pending",
     };
     setData((prevData) => [...prevData, newTask]);
-    console.log(data);
   };
 
   const updateTask = (taskId, newTitle) => {
